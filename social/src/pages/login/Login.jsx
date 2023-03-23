@@ -15,11 +15,19 @@ export default function Login() {
                 <input placeholder="Email" type="Email" className="loginInput" />
                 <input placeholder="Password" type="Email" className="loginInput" />
                 <button className="loginButton">Log In</button>
+<<<<<<< HEAD
                 <span className="loginForgot">Forgot Password</span>
+=======
+                <span className="loginForgot">Forgot Password?</span>
+>>>>>>> 460d855
                 <button className="loginRegisterButton"> Create a New Account</button>
             </div>
         </div>
       </div>
     </div>
   )
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 460d855

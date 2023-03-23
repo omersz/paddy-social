@@ -3,6 +3,10 @@ import { Users } from "../../dummyData";
 import Online from "../online/Online"; 
 
 export default function Rightbar({profile}) {
+<<<<<<< HEAD
+=======
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+>>>>>>> 460d855
 
   const HomeRightBar = () => {
     return(
@@ -45,6 +49,7 @@ export default function Rightbar({profile}) {
       <h4 className="rightbarTitle">User Friends</h4>
       <div className="rightbarFollowings">
         <div className="rightbarFollowing">
+<<<<<<< HEAD
           <img src="assets/person/1.jpeg" alt="" className="rightbarFollowingImg" />
           <span className="rightbarFollowingName">jesse Pinkman</span>
         </div>
@@ -66,6 +71,29 @@ export default function Rightbar({profile}) {
         </div>
         <div className="rightbarFollowing">
           <img src="assets/person/6.jpeg" alt="" className="rightbarFollowingImg" />
+=======
+          <img src={`${PF}person/1.jpeg`} alt="" className="rightbarFollowingImg" />
+          <span className="rightbarFollowingName">jesse Pinkman</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img  src={`${PF}person/2.jpeg`} alt="" className="rightbarFollowingImg" />
+          <span className="rightbarFollowingName">jesse Pinkman</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src={`${PF}person/3.jpeg`} alt="" className="rightbarFollowingImg" />
+          <span className="rightbarFollowingName">jesse Pinkman</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src={`${PF}person/4.jpeg`} alt="" className="rightbarFollowingImg" />
+          <span className="rightbarFollowingName">jesse Pinkman</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src={`${PF}person/5.jpeg`} alt="" className="rightbarFollowingImg" />
+          <span className="rightbarFollowingName">jesse Pinkman</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src={`${PF}person/6.jpeg`} alt="" className="rightbarFollowingImg" />
+>>>>>>> 460d855
           <span className="rightbarFollowingName">jesse Pinkman</span>
         </div>
       </div>
