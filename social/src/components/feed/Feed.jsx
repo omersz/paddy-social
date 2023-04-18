@@ -8,10 +8,13 @@ import axios from "axios";
 export default function Feed() {
   const [posts, setPosts] = useState([]);
 
-
   useEffect(() => {
-    console.log("feed rendered");
-  })
+    const fetchPosts = async()=>{
+      const res = await axios.get("posts/timeline/643e8c47d2afefe28a6e64ad")
+      console.log(res)
+    };
+    fetchPosts();
+  }, []);
 
   return (
     <div className="feed">
