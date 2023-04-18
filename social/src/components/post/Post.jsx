@@ -3,6 +3,7 @@ import "./post.css";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useState, useEffect} from "react";
 import axios from "axios";
+import {format} from "timeago.js";
 
 export default function Post({post}) {
     const[like, setLike] = useState(post.likes.length);
@@ -16,7 +17,7 @@ export default function Post({post}) {
           setUser(res.data)
         };
         fetchUser();
-      }, []);
+      }, [post.userId]);
 
     const likeHandler =()=>{
         setLike(isLiked ? like-1 : like+1)
@@ -30,7 +31,7 @@ export default function Post({post}) {
                 <div className="postTopLeft">
                     <img className="postProfileImg" src={user.profilePicture || PF+"person/noAvatar.png"} alt="" />
                     <span className="postUsername">{user.username}</span>
-                    <span className="postDate">{post.date}</span>
+                    <span className="postDate">{format(post.createdAt)}</span>
                 </div>
                 <div className="postTopRight">
                     <MoreVertIcon/>
