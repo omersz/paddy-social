@@ -4,10 +4,18 @@ import AuthReducer from "./AuthReducer";
 import { CircularProgress } from "@mui/material";
 
 const INITIAL_STATE = {
-    user: null,
+    user: {
+        _id: "643f15511c0e86bb9333bc96",
+        username: "test",
+        email:"test@gmail.com",
+        profilePicture: "",
+        coverPicture: "",
+        isAdmin: false,
+        followers: [],
+        followings: [],
+    },
     isFecthing: false,
     error: false,
-
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
