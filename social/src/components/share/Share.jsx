@@ -19,10 +19,10 @@ export default function Share() {
       userId: user._id,
       desc: desc.current.value
     }
+    
     try{
       await axios.post("/posts", newPost)
     }catch(err){
-
     }
   }
 
