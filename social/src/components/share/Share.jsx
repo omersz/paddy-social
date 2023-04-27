@@ -19,6 +19,14 @@ export default function Share() {
       userId: user._id,
       desc: desc.current.value
     }
+
+    if(file){
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("file",file)
+      data.append("name", fileName)
+      newPost.img = fileName
+    };
     
     try{
       await axios.post("/posts", newPost)
@@ -30,7 +38,7 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-            <img className="shareProfileImg" src={user.profilePicture ? PF+user.profilePicture : PF+"person/noAvatar.png"} alt=""/>
+            <img className="shareProfileImg" src={user.profilePicture ? PF+"/"+user.profilePicture : PF+"/"+"person/noAvatar.png"} alt=""/>
             <input placeholder={"What's in your mind "+user.username+"?"} type="text" className="shareInput" ref={desc}/>
         </div>
         <hr className="shareHr" />

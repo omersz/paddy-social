@@ -43,7 +43,7 @@ export default function Post({post}) {
             <div className="postTop">
                 <div className="postTopLeft">
                     <Link to={`profile/${user.username}`}>
-                    <img className="postProfileImg" src={user.profilePicture ? PF + user.profilePicture : PF+"person/noAvatar.png"} alt="" />
+                    <img className="postProfileImg" src={user.profilePicture ? PF + "/"+ user.profilePicture : PF+"/"+"person/noAvatar.png"} alt="" />
                     </Link>
                     <span className="postUsername">{user.username}</span>
                     <span className="postDate">{format(post.createdAt)}</span>
@@ -54,12 +54,12 @@ export default function Post({post}) {
             </div>
             <div className="postCenter">
                 <span className="postText">{post.desc}</span>
-                <img className="postImg" src={PF+post.img}  alt="" />
+                <img className="postImg" src={PF+"/"+post.img}  alt="" />
             </div>
             <div className="postBottom">
                 <div className="postBottomLeft">
-                    <img className="LikeIcon" src={`${PF}like.png`} onClick={likeHandler} alt="" />
-                    <img className="LikeIcon" src={`${PF}heart.png`}  onClick={likeHandler} alt="" />
+                    <img className="LikeIcon" src={`${PF}/like.png`} onClick={likeHandler} alt="" />
+                    <img className="LikeIcon" src={`${PF}/heart.png`}  onClick={likeHandler} alt="" />
                     <span className="postLikeCounter">{like} people like it </span>
                 </div>
                 <div className="postBottomRight">
