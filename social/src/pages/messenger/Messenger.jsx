@@ -14,7 +14,6 @@ export default function Messsenger({}){
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
-    const [arrivalMessage, setArrivalMessage] = useState(null);
 
     const socket = useRef();
     const {user} = useContext(AuthContext);
@@ -23,21 +22,13 @@ export default function Messsenger({}){
     useEffect(()=>{
         socket.current = io("ws://localhost:8900");
         socket.current.on("getMessage", data =>{
-            setArrivalMessage({
+            setMessages((prev) => [...prev, {
                 sender: data.senderId,
                 text: data.text,
                 createdAt: Date.now()
-            });
+            }])
         });
     }, []);
-
-    /*
-    useEffect(() => {
-    if(arrivalMessage && currentChat?.members.includes(arrivalMessage.sender)){
-      setMessages((prev) => [...prev, arrivalMessage])
-    }
-    }, [arrivalMessage, currentChat]);
-    */
 
     useEffect(()=>{
         socket.current.emit("addUser", user._id); 
