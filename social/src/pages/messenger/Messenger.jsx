@@ -6,14 +6,25 @@ import Conversation from '../../components/conversations/Conversation';
 import Message from '../../components/message/Message';
 import ChatOnline from '../../components/chatOnline/ChatOnline';
 import axios from 'axios';
+import {io} from "socket.io-client";
+
 
 export default function Messsenger({}){
     const [conversations, setConversations] = useState([]);
-    const [currentChat, setCurrentChat] = useState([null]);
+    const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const socket = useRef(io("ws://localhost:8900"));
     const {user} = useContext(AuthContext);
     const scrollRef = useRef();
+    
+    useEffect(()=>{
+        socket.current.emit("addUser", user._id); 
+        socket.current.on("getUsers", users=>{
+            console.log(users)
+        })
+    }, [user]);
+    
 
     useEffect(() => {
         const getConversations = async () => {
@@ -56,6 +67,11 @@ export default function Messsenger({}){
         }
       };
 
+
+      useEffect(() => {
+        scrollRef.current && scrollRef.current.scrollIntoView({ behavior: "smooth" });
+      }, [messages]);
+
     return (
         <>
         <Topbar />
@@ -76,15 +92,18 @@ export default function Messsenger({}){
                     <>
                     <div className="chatBoxTop">
                        {messages.map((m) => (
-                       <Message message={m} own={m.sender === user._id}/>
+                            <div ref= {scrollRef}>
+                                <Message message={m} own={m.sender === user._id} />
+                            </div>
                        ))}
                     </div>  
                     <div className="chatBoxBottom">
-                        <textarea className='chatMessageInput' 
-                        placeholder='write something...'
-                        onChange={(e)=>setNewMessage(e.target.value)}
-                        value={newMessage}
-                        ></textarea>
+                        <textarea 
+                            className='chatMessageInput' 
+                            placeholder='write something...'
+                            onChange={(e)=>setNewMessage(e.target.value)}
+                            value={newMessage}>
+                        </textarea>
                         <button className='chatSubmitButton' onClick={handleSubmit}>Send</button>
                     </div> </>) : (<span className='noConversationText'>Open a conversation to start a chat.</span>)}
                 </div>
